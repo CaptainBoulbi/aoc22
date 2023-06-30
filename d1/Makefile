@@ -1,15 +1,24 @@
-flag = -Wall -Wextra
+FLAGS=-Wall -Wextra
+
+all : main
 
 main : main.o
-	gcc $(flag) -I. -o main main.o
+	g++ $(FLAGS) -o main main.o
 
-main.o : main.c
-	gcc $(flag) -I. -c main.c -o main.o
+main.o : main.cpp
+	g++ $(FLAGS) -c -o main.o main.cpp
 
-clean :
-	rm -f *.o main
-
-run : main
+run : all
 	./main
 
-.PHONY : run clean
+clean :
+	rm *.o main
+
+dist : clean
+	tar zcvf archive.tgz *
+
+check :
+	cppcheck --enable=all --suppress=missingIncludeSystem -I. .
+	flawfinder .
+
+.PHONY : run clean dist check
