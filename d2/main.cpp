@@ -36,33 +36,49 @@ int ptsWin(char l[256]){
 	return 0;
 }
 
-int part2(line){
-	if (line[2] == 'Y'){ return line[0]; }
+int part2(char line[256]){
+	int ptsH = 0;
+	int ptsW = 0;
+
+	if (line[2] == 'Y'){ return vHand(line[0]) + 3; }
 
 	switch (line[2]){
 		case 'X':
 			switch (line[0]){
 				case 'A':
-					return 3;
+					ptsH = 3;
+					break;
 				case 'B':
-					return 1;
+					ptsH = 1;
+					break;
 				case 'C':
-					return 2;
+					ptsH = 2;
+					break;
 			}
-		case 'Y':
+			ptsW = 0;
+			break;
+
+		case 'Z':
 			switch (line[0]){
 				case 'A':
-					return 2;
+					ptsH = 2;
+					break;
 				case 'B':
-					return 3;
+					ptsH = 3;
+					break;
 				case 'C':
-					return 1;
+					ptsH = 1;
+					break;
 			}
+			ptsW = 6;
+			break;
 	}
+
+	return ptsH + ptsW;
 }
 
 int main(){
-	char line[3];
+	char line[256];
 	FILE *file = fopen("input", "r");
 	int res = 0;
 
