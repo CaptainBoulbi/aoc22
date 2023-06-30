@@ -1,5 +1,4 @@
 #include <iostream>
-#include "termCtrl.h"
 
 int somme(int arr[], int n){
 	int res = 0;
