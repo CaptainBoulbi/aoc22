@@ -11,6 +11,9 @@ main.o : main.cpp
 run : all
 	./main
 
+output : all
+	./main > output
+
 clean :
 	rm *.o main
 
@@ -21,4 +24,4 @@ check :
 	cppcheck --enable=all --suppress=missingIncludeSystem -I. .
 	flawfinder .
 
-.PHONY : run clean dist check
+.PHONY : run output clean dist check
